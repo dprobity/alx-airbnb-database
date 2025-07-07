@@ -5,6 +5,26 @@ FROM booking b
 INNER JOIN app_user u ON b.user_id = u.user_id;
 
 -- 2. LEFT JOIN: all properties and any associated reviews
+
+
+
+
+
+-- 2. LEFT JOIN: All properties with their reviews (even if no reviews exist)
+SELECT 
+    p.property_id,
+    p.name,
+    r.review_id,
+    r.rating,
+    r.comment
+FROM property p
+LEFT JOIN review r ON p.property_id = r.property_id
+ORDER BY p.property_id;
+
+
+
+
+
 select 
 p.property_id,
 p.name,
@@ -14,7 +34,7 @@ r.comment
 
 from property p 
 left join review r p.proprty_id = r.property_id
-order by p.property_id
+order by p.property_id;
 
 
 -- 3. FULL OUTER JOIN: all users and bookings (even if unrelated)
