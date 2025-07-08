@@ -29,3 +29,18 @@ CREATE INDEX IF NOT EXISTS idx_booking_status
 CREATE INDEX IF NOT EXISTS idx_booking_availability
     ON booking(property_id, start_date, end_date);
 
+
+
+/* Booking availability query (uses idx_booking_availability) */
+EXPLAIN ANALYZE
+SELECT *
+FROM booking
+WHERE property_id = 'aaaaaaa1-aaaa-aaaa-aaaa-aaaaaaaaaaa1'
+  AND start_date <= '2025-08-01'
+  AND end_date   >= '2025-08-05';
+
+/* Host listings count (uses idx_property_host) */
+EXPLAIN ANALYZE
+SELECT COUNT(*)
+FROM property
+WHERE host_id = '11111111-1111-1111-1111-111111111111';
